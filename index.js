@@ -5,7 +5,7 @@ const passport = require("passport");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const passwordCookie = "motdepasse_hard" + Math.random();
-const router = require("./routes/indexRoute");
+const router = require("./routes/indexRoutes");;
 const cookieParser = require("cookie-parser");
 const expressSession = require("express-session");
 const User = require("./models/user");  // Seulement utile pour accéder à la partie admin dans notre cas
@@ -102,4 +102,6 @@ app.use(express.json());
 app.use("/", router);
 
 
-
+router.get("/dodo",  (req, res) => {
+    res.send("dodo");
+})  

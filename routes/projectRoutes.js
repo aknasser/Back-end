@@ -2,10 +2,10 @@ const router = require("express").Router();
 const projectController = require("../controllers/projectController");
 
 
-// LES ROUTES PROPRES AU INTERACTION DATA DU VISITEUR
-router.post("/", projectController.home);  // HOMEPAGE 
+// R DU CRUD POUR PROSPECT
+router.get("/",  projectController.retrieveProject, projectController.convertJSON)  
 
-
+ 
 
 
 
