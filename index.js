@@ -97,11 +97,10 @@ app.use(
 app.use(express.json());
 
 
+
+
+
 // IMPORTATION ET GESTION DES ROUTES.
 
 app.use("/", router);
 
-
-router.get("/dodo",  (req, res) => {
-    res.send("dodo");
-})  
