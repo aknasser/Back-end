@@ -12,8 +12,6 @@ const User = require("./models/user");  // Seulement utile pour accéder à la p
 
 
 
-
-
 // LE SERVER
 const app = express();
 app.use(express.static("public")); 
@@ -97,11 +95,10 @@ app.use(
 app.use(express.json());
 
 
+
+
+
 // IMPORTATION ET GESTION DES ROUTES.
 
 app.use("/", router);
 
-
-router.get("/dodo",  (req, res) => {
-    res.send("dodo");
-})  
