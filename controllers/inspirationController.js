@@ -1,12 +1,9 @@
 const Inspiration = require("../models/inspiration");
 
+
 module.exports = {
 
-    bypassCors : (req, res, next) => {
-            res.header('Access-Control-Allow-Origin', '*');
-            res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-            next();
-    },
+
 
     retrieveInspiration : async (req, res, next) => {
         const allInspiration = await Inspiration.find({});
@@ -19,7 +16,7 @@ module.exports = {
         const randomNumber = await Math.floor(Math.random() * nmbreInspiration);
         const inspirationAleatoire = await Inspiration.findOne({}).skip(randomNumber);
         console.log(`nmbreInspiration :${inspirationAleatoire}`);
-        res.locals.toConvert = inspirationAleatoire;
+        res.locals.toConvert = await inspirationAleatoire;
         next(); 
     },  
 

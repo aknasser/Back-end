@@ -12,8 +12,6 @@ const User = require("./models/user");  // Seulement utile pour accéder à la p
 
 
 
-
-
 // LE SERVER
 const app = express();
 app.use(express.static("public")); 
