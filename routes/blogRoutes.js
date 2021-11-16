@@ -3,8 +3,8 @@ const blogController = require("../controllers/blogController");
 
 
 // R DU CRUD POUR PROSPECT
-router.get("/",  blogController.retrieveBlog, blogController.convertJSON)  
-
+router.get("/",  blogController.retrieveBlog, blogController.convertJSON);  
+router.get("/:id", blogController.selectedArticle, blogController.convertJSON);
  
 
 
