@@ -10,6 +10,12 @@ module.exports = {
         next(); 
      }, 
 
+    selectedArticle : async(req, res, next) => {
+        const idArticle = req.params.id;                    // on récupère le paramètre de l'id appelé 
+        const chosenArticle = await Blog.findById(idArticle)
+        res.locals.toConvert = chosenArticle;
+        next();
+    },
     convertJSON : (req, res) => {
         const properJSONObject = res.locals.toConvert;
         console.log(properJSONObject);
