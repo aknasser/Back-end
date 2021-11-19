@@ -20,10 +20,10 @@ const blogSchema = new Schema(
             type: String,
             required: true
         },
-        keywords: [{
+        keywords: {
             type: String,
             required: true
-        }],
+        },
         content: {
             type: String,
             required: true

@@ -15,10 +15,21 @@ module.exports = {
         const nmbreInspiration = await res.locals.toConvert.length;
         const randomNumber = await Math.floor(Math.random() * nmbreInspiration);
         const inspirationAleatoire = await Inspiration.findOne({}).skip(randomNumber);
-        console.log(`nmbreInspiration :${inspirationAleatoire}`);
         res.locals.toConvert = await inspirationAleatoire;
         next(); 
     },  
+
+    newInspiration : async(req, res) => {
+        const newArticle = req.body;
+        console.log(`le titre du projet : ${newArticle.title}`)
+        
+        const newEntry = await Inspiration.create({
+            quote : newArticle.quote,
+            author : newArticle.author
+        })
+    },
+
+
 
     convertJSON : (req, res) => {
         const properJSONObject = res.locals.toConvert;
