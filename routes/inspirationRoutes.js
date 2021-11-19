@@ -4,9 +4,10 @@ const inspirationController = require("../controllers/inspirationController");
 
 
 // R DU CRUD POUR PROSPECT
-router.get("/",  inspirationController.retrieveInspiration, inspirationController.randomInspiration, inspirationController.convertJSON)  
+router.get("/random",  inspirationController.retrieveInspiration, inspirationController.randomInspiration, inspirationController.convertJSON)  
+router.get("/",  inspirationController.retrieveInspiration, inspirationController.convertJSON)  
 
- 
+router.post("/create", inspirationController.newInspiration);
 
 
 

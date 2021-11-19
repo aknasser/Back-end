@@ -5,7 +5,6 @@ module.exports = {
 
     retrieveProject : async (req, res, next) => {
         const allProject = await Project.find({});
-        await console.log(allProject);
         res.locals.toConvert = allProject;   // On cale allProject dans la variable locale "toConvertJSON". Cette variable est ensuite utilisée dans la middleware
         next(); 
      },
@@ -17,9 +16,21 @@ module.exports = {
         next();
     },
 
+    newProject : async(req, res) => {
+        const newProject = req.body;
+        console.log(`le titre du projet : ${newProject.title}`)
+        
+        const newEntry = await Project.create({
+            title : newProject.title,
+            picture : newProject.picture,
+            link : newProject.link,
+            description : newProject.description
+        })
+    },
+
+
     convertJSON : (req, res) => {
         const properJSONObject = res.locals.toConvert;
-        console.log(properJSONObject);
         res.json(properJSONObject);
     } 
 
