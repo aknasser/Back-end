@@ -19,9 +19,16 @@ module.exports = {
         next(); 
     },  
 
+    selectedInspiration : async(req, res, next) => {
+        const idInspiration = req.params.id;                    // on récupère le paramètre de l'id appelé 
+        const chosenInspiration = await Inspiration.findById(idInspiration)
+        res.locals.toConvert = chosenInspiration;
+        next();
+    },
+
     newInspiration : async(req, res) => {
         const newArticle = req.body;
-        console.log(`le titre du projet : ${newArticle.title}`)
+        console.log(`le titre de la citation : ${newArticle.quote}`)
         
         const newEntry = await Inspiration.create({
             quote : newArticle.quote,

@@ -8,6 +8,14 @@ module.exports = {
         res.locals.toConvert = allProspect;   // On cale allProspect dans la variable locale "toConvertJSON". Cette variable est ensuite utilisée dans la middleware
         next(); 
      },
+
+    selectedProspect : async(req, res, next) => {
+        const idProspect = req.params.id;                    // on récupère le paramètre de l'id appelé 
+        const chosenProspect = await Prospect.findById(idProspect)
+        res.locals.toConvert = chosenProspect;
+        next();
+    },
+
      
     newProspect : async(req, res) => {
         const lead = req.body;

@@ -9,6 +9,7 @@ router.get("/:id",  projectController.selectedProject, projectController.convert
 // C DU CRUD
  router.post("/create",projectController.newProject);
 
-
+// U DU CRUD
+ router.get("/update/:id",  projectController.selectedProject, projectController.convertJSON);  
 
 module.exports = router;
