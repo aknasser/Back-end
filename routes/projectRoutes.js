@@ -11,5 +11,10 @@ router.get("/:id",  projectController.selectedProject, projectController.convert
 
 // U DU CRUD
  router.get("/update/:id",  projectController.selectedProject, projectController.convertJSON);  
+ router.post("/update/:id", projectController.updatedProject);
+
+ // D DU CRUD
+router.delete("/delete/:id", projectController.deletedObject);
+
 
 module.exports = router;

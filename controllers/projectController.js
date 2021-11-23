@@ -28,6 +28,31 @@ module.exports = {
         })
     },
 
+    updatedProject : async(req, res) => {
+        let projectUpdated = req.body
+        console.log(`Le title du project updaté : ${projectUpdated.title}`);
+        let objectId = req.params.id;
+        console.log(`L'id: ${objectId}`);
+
+        const entryToUpdate = await Project.findByIdAndUpdate(objectId, {
+            $set : {
+                title : projectUpdated.title,
+                picture : projectUpdated.subtitle,
+                link : projectUpdated.link,
+                description : projectUpdated.description,
+            },
+        },
+        {new : true}
+        )
+        console.log(`la nouvelle entrée : ${entryToUpdate}`)
+    },
+
+    deletedObject : async(req, res) => {
+        const targetId = req.params.id;
+        console.log(`ID de l'élément à supprimer : ${targetId}`);
+        const entryToDelete = await Project.findByIdAndRemove(targetId);
+    },
+
 
     convertJSON : (req, res) => {
         const properJSONObject = res.locals.toConvert;

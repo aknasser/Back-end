@@ -31,6 +31,35 @@ module.exports = {
         })
     },
 
+
+    updatedProspect : async(req, res) => {
+        let prospectUpdated = req.body
+        console.log(`Le nom du prospect updaté : ${prospectUpdated.title}`);
+        let objectId = req.params.id;
+        console.log(`L'id: ${objectId}`);
+
+        const entryToUpdate = await Prospect.findByIdAndUpdate(objectId, {
+            $set : {
+                prenom : prospectUpdated.prenom,
+                nom : prospectUpdated.nom,
+                demande : prospectUpdated.demande,
+                activite : prospectUpdated.activite,
+                numero : prospectUpdated.numero,
+                email : prospectUpdated.email,
+            },
+        },
+        {new : true}
+        )
+        console.log(`la nouvelle entrée : ${entryToUpdate}`)
+    },
+
+    deletedObject : async(req, res) => {
+        const targetId = req.params.id;
+        console.log(`ID de l'élément à supprimer : ${targetId}`);
+        const entryToDelete = await Prospect.findByIdAndRemove(targetId);
+    },
+
+
     convertJSON : (req, res) => {
         const properJSONObject = res.locals.toConvert;
         res.json(properJSONObject);

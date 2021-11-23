@@ -36,6 +36,28 @@ module.exports = {
         })
     },
 
+    updatedInspiration : async(req, res) => {
+        let inspirationUpdated = req.body
+        console.log(`L'auteur de la citation updaté : ${inspirationUpdated.author}`);
+        let objectId = req.params.id;
+        console.log(`L'id: ${objectId}`);
+
+        const entryToUpdate = await Inspiration.findByIdAndUpdate(objectId, {
+            $set : {
+                quote : inspirationUpdated.quote,
+                author : inspirationUpdated.author,
+            },
+        },
+        {new : true}
+        )
+        console.log(`la nouvelle entrée : ${entryToUpdate}`)
+    },
+
+    deletedObject : async(req, res) => {
+        const targetId = req.params.id;
+        console.log(`ID de l'élément à supprimer : ${targetId}`);
+        const entryToDelete = await Inspiration.findByIdAndRemove(targetId);
+    },
 
 
     convertJSON : (req, res) => {

@@ -33,10 +33,10 @@ module.exports = {
     updatedArticle : async(req, res) => {
         let articleUpdated = req.body
         console.log(`Le title de'article updaté : ${articleUpdated.title}`);
-        let articleId = req.params.id;
-        console.log(`L'id: ${articleId}`);
+        let objectId = req.params.id;
+        console.log(`L'id: ${objectId}`);
 
-        const entryToUpdate = await Blog.findByIdAndUpdate(articleId, {
+        const entryToUpdate = await Blog.findByIdAndUpdate(objectId, {
             $set : {
                 title : articleUpdated.title,
                 subtitle : articleUpdated.subtitle,
@@ -49,6 +49,13 @@ module.exports = {
         )
         console.log(`la nouvelle entrée : ${entryToUpdate}`)
     },
+
+    deletedObject : async(req, res) => {
+        const targetId = req.params.id;
+        console.log(`ID de l'élément à supprimer : ${targetId}`);
+        const entryToDelete = await Blog.findByIdAndRemove(targetId);
+    },
+
 
     convertJSON : (req, res) => {
         const properJSONObject = res.locals.toConvert;

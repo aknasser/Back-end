@@ -12,6 +12,10 @@ router.post("/create", inspirationController.newInspiration);
 
 // U DU CRUD
 router.get("/update/:id", inspirationController.selectedInspiration, inspirationController.convertJSON);
+router.post("/update/:id", inspirationController.updatedInspiration);
 
+
+// D DU CRUD
+router.delete("/delete/:id", inspirationController.deletedObject);
 
 module.exports = router;
