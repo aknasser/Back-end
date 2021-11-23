@@ -9,6 +9,12 @@ router.get("/:id",  projectController.selectedProject, projectController.convert
 // C DU CRUD
  router.post("/create",projectController.newProject);
 
+// U DU CRUD
+ router.get("/update/:id",  projectController.selectedProject, projectController.convertJSON);  
+ router.post("/update/:id", projectController.updatedProject);
+
+ // D DU CRUD
+router.delete("/delete/:id", projectController.deletedObject);
 
 
 module.exports = router;

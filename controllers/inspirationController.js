@@ -19,9 +19,16 @@ module.exports = {
         next(); 
     },  
 
+    selectedInspiration : async(req, res, next) => {
+        const idInspiration = req.params.id;                    // on récupère le paramètre de l'id appelé 
+        const chosenInspiration = await Inspiration.findById(idInspiration)
+        res.locals.toConvert = chosenInspiration;
+        next();
+    },
+
     newInspiration : async(req, res) => {
         const newArticle = req.body;
-        console.log(`le titre du projet : ${newArticle.title}`)
+        console.log(`le titre de la citation : ${newArticle.quote}`)
         
         const newEntry = await Inspiration.create({
             quote : newArticle.quote,
@@ -29,6 +36,28 @@ module.exports = {
         })
     },
 
+    updatedInspiration : async(req, res) => {
+        let inspirationUpdated = req.body
+        console.log(`L'auteur de la citation updaté : ${inspirationUpdated.author}`);
+        let objectId = req.params.id;
+        console.log(`L'id: ${objectId}`);
+
+        const entryToUpdate = await Inspiration.findByIdAndUpdate(objectId, {
+            $set : {
+                quote : inspirationUpdated.quote,
+                author : inspirationUpdated.author,
+            },
+        },
+        {new : true}
+        )
+        console.log(`la nouvelle entrée : ${entryToUpdate}`)
+    },
+
+    deletedObject : async(req, res) => {
+        const targetId = req.params.id;
+        console.log(`ID de l'élément à supprimer : ${targetId}`);
+        const entryToDelete = await Inspiration.findByIdAndRemove(targetId);
+    },
 
 
     convertJSON : (req, res) => {
