@@ -37,7 +37,7 @@ module.exports = {
         const entryToUpdate = await Project.findByIdAndUpdate(objectId, {
             $set : {
                 title : projectUpdated.title,
-                picture : projectUpdated.subtitle,
+                picture : projectUpdated.picture,
                 link : projectUpdated.link,
                 description : projectUpdated.description,
             },
