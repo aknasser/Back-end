@@ -56,6 +56,15 @@ module.exports = {
         const entryToDelete = await Blog.findByIdAndRemove(targetId);
     },
 
+    filteredSearch : async(req, res, next) => {
+        const wordsSearched = req.params.filter;
+        console.log(`WORDS SEARCHED : ${wordsSearched}`);
+        const contentToRetrieve = await Blog.find({content : {"$regex" : wordsSearched, "$options" : "i"}});  // We use a regular expressions to find the array containing the value of  wordSearched
+        console.log(`CONTENT TO RETRIEVE : ${contentToRetrieve}`);
+        res.locals.toConvert = contentToRetrieve;
+        next()
+    },
+
 
     convertJSON : (req, res) => {
         const properJSONObject = res.locals.toConvert;
