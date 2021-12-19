@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Inspiration = require("../inspiration");
 
 mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://localhost:27017/new_website",
+    process.env.MONGODB_URI || "mongodb+srv://nasser:Akande33@projects22-pri.9ydu0.mongodb.net/new_website?retryWrites=true&w=majority",
     {useNewUrlParser: true} 
 );
 
@@ -22,7 +22,7 @@ const alimentationInspiration = async() => {
     })
 
     const thirdQuote = await Inspiration.create({
-        quote : "If you want to live a happy life, tie it to a goal, not to people or things (got damn right Berty)",
+        quote : "If you want to live a happy life, tie it to a goal, not to people or things",
         author : "Albert Einstein"
     })
 }

@@ -1,0 +1,40 @@
+[{
+  "_id": {
+    "$oid": "61be732b29054cf8adc6d1cc"
+  },
+  "quote": "Get busy living or get busy dying",
+  "author": "Stephen King",
+  "createdAt": {
+    "$date": "2021-12-18T23:47:55.902Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-18T23:47:55.902Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61be732b29054cf8adc6d1ce"
+  },
+  "quote": "You only live once, but if you do it right, once is enough.",
+  "author": "Mae west",
+  "createdAt": {
+    "$date": "2021-12-18T23:47:55.913Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-18T23:47:55.913Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61be732b29054cf8adc6d1d0"
+  },
+  "quote": "If you want to live a happy life, tie it to a goal, not to people or things (got damn right Berty)",
+  "author": "Albert Einstein",
+  "createdAt": {
+    "$date": "2021-12-18T23:47:55.917Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-18T23:47:55.917Z"
+  },
+  "__v": 0
+}]
