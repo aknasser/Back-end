@@ -34,7 +34,7 @@ const server = app.listen(app.get("port"), () => {
 /* mongoose.set('useFindAndModify', false);     // Nécessaire pour pouvoir utiliser FindByIdAndUpdate dans les anciennes version. Décommenter si problème avec FindByIdAndUpdate
  */
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/new_website",        // Ainsi Mongoose en utilisant les variables de l'environnement ou le cas échéant à l'adresse local de la DB
+mongoose.connect(/* process.env.MONGODB_URI || */ "mongodb://localhost:27017/new_website",        // Ainsi Mongoose en utilisant les variables de l'environnement ou le cas échéant à l'adresse local de la DB
     {useNewUrlParser: true}
 );
 
