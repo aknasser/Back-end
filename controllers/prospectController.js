@@ -4,7 +4,7 @@ module.exports = {
 
 
     retrieveProspect : async (req, res, next) => {
-        const allProspect = await Prospect.find({});
+        const allProspect = await Prospect.find({}).sort({createdAt : -1});
         res.locals.toConvert = allProspect;   // On cale allProspect dans la variable locale "toConvertJSON". Cette variable est ensuite utilisée dans la middleware
         next(); 
      },

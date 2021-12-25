@@ -6,7 +6,7 @@ module.exports = {
 
 
     retrieveInspiration : async (req, res, next) => {
-        const allInspiration = await Inspiration.find({});
+        const allInspiration = await Inspiration.find({}).sort({createdAt : -1});
         res.locals.toConvert = allInspiration;   // On cale allInspiration dans la variable locale "toConvertJSON". Cette variable est ensuite utilisée dans la middleware
         next(); 
      },
