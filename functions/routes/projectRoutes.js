@@ -17,6 +17,5 @@ router.delete("/delete/:id", projectController.deletedObject);
 
 
 
-router.get("/entry", projectController.testEntry);
 
 module.exports = router;

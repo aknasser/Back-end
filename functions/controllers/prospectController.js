@@ -2,16 +2,9 @@ const Prospect = require("../models/prospect");
 
 module.exports = {
 
-    test : (req, res) => {
-            res.send("la page prospect")
-    },
 
-    testEntry : (req, res) => {
-        res.send("Entry test pour le prospect")
-    },
-    
     retrieveProspect : async (req, res, next) => {
-        const allProspect = await Prospect.find({});
+        const allProspect = await Prospect.find({}).sort({createdAt : -1});
         res.locals.toConvert = allProspect;   // On cale allProspect dans la variable locale "toConvertJSON". Cette variable est ensuite utilisée dans la middleware
         next(); 
      },
@@ -72,6 +65,5 @@ module.exports = {
         res.json(properJSONObject);
     } 
 
-
-
 };
+

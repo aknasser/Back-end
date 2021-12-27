@@ -19,6 +19,5 @@ router.delete("/delete/:id", inspirationController.deletedObject);
 
 
 
-router.get("/entry", inspirationController.testEntry);
 
 module.exports = router;

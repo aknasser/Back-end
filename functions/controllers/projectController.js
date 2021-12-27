@@ -2,15 +2,9 @@ const Project = require("../models/project");
 
 module.exports = {
 
-    test : (req, res) => {
-            res.send("la page project")
-    },
-    testEntry : (req, res) => {
-        res.send("Entry test pour le project")
-    },
 
     retrieveProject : async (req, res, next) => {
-        const allProject = await Project.find({});
+        const allProject = await Project.find({}).sort({createdAt : -1});
         res.locals.toConvert = allProject;   // On cale allProject dans la variable locale "toConvertJSON". Cette variable est ensuite utilisée dans la middleware
         next(); 
      },
@@ -65,6 +59,5 @@ module.exports = {
         res.json(properJSONObject);
     } 
 
-
-
 };
+
