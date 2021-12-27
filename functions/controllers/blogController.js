@@ -1,19 +1,12 @@
 const Blog = require("../models/blog");
 
-
 module.exports = {
-               
-    test : (req, res) => {
-            res.send("la page blog")
-    },
 
-    testEntry : (req, res) => {
-        res.send("Entry test pour le blog : cookie-parser + session + passport + user + urlEnconded + port + mongodb/mongoose")
-    },
 
     retrieveBlog : async (req, res, next) => {
-        const allBlog = await Blog.find({});
+        const allBlog = await Blog.find().sort({createdAt : -1});
         res.locals.toConvert = allBlog;   // On cale allBlog dans la variable locale "toConvertJSON". Cette variable est ensuite utilisée dans la middleware
+        console.log(allBlog[0]);
         next(); 
      }, 
 
@@ -67,7 +60,7 @@ module.exports = {
     filteredSearch : async(req, res, next) => {
         const wordsSearched = req.params.filter;
         console.log(`WORDS SEARCHED : ${wordsSearched}`);
-        const contentToRetrieve = await Blog.find({content : {"$regex" : wordsSearched, "$options" : "i"}});  // We use a regular expressions to find the array containing the value of  wordSearched
+        const contentToRetrieve = await Blog.find({content : {"$regex" : wordsSearched, "$options" : "i"}}).sort({createdAt : -1});;  // We use a regular expressions to find the array containing the value of  wordSearched
         console.log(`CONTENT TO RETRIEVE : ${contentToRetrieve}`);
         res.locals.toConvert = contentToRetrieve;
         next()
@@ -80,3 +73,4 @@ module.exports = {
     } 
 
 };
+

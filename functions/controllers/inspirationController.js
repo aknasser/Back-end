@@ -1,16 +1,12 @@
 const Inspiration = require("../models/inspiration");
 
+
 module.exports = {
 
-    test : (req, res) => {
-            res.send("la page inspiration")
-    },
-    testEntry : (req, res) => {
-        res.send("Entry test pour le inspiration")
-    },
+
 
     retrieveInspiration : async (req, res, next) => {
-        const allInspiration = await Inspiration.find({});
+        const allInspiration = await Inspiration.find({}).sort({createdAt : -1});
         res.locals.toConvert = allInspiration;   // On cale allInspiration dans la variable locale "toConvertJSON". Cette variable est ensuite utilisée dans la middleware
         next(); 
      },
@@ -70,3 +66,4 @@ module.exports = {
     } 
 
 };
+
