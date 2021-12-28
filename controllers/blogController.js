@@ -29,13 +29,14 @@ module.exports = {
             keywords : newArticle.keywords,
             content : newArticle.content,
         })
+        res.send("new entry created!");
+
     },
 
     updatedArticle : async(req, res) => {
         let articleUpdated = req.body
         console.log(`Le title de'article updaté : ${articleUpdated.title}`);
         let objectId = req.params.id;
-        console.log(`L'id: ${objectId}`);
 
         const entryToUpdate = await Blog.findByIdAndUpdate(objectId, {
             $set : {
@@ -47,14 +48,15 @@ module.exports = {
             },
         },
         {new : true}
-        )
-        console.log(`la nouvelle entrée : ${entryToUpdate}`)
+        );
+        res.send("entry updated!");
     },
 
     deletedObject : async(req, res) => {
         const targetId = req.params.id;
         console.log(`ID de l'élément à supprimer : ${targetId}`);
         const entryToDelete = await Blog.findByIdAndRemove(targetId);
+        res.send("entry removed!");
     },
 
     filteredSearch : async(req, res, next) => {
