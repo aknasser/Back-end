@@ -26,6 +26,8 @@ module.exports = {
             link : newProject.link,
             description : newProject.description
         })
+        res.send("new entry created!");
+
     },
 
     updatedProject : async(req, res) => {
@@ -45,12 +47,15 @@ module.exports = {
         {new : true}
         )
         console.log(`la nouvelle entrée : ${entryToUpdate}`)
+        res.send("entry updated!");
+
     },
 
     deletedObject : async(req, res) => {
         const targetId = req.params.id;
         console.log(`ID de l'élément à supprimer : ${targetId}`);
         const entryToDelete = await Project.findByIdAndRemove(targetId);
+        res.send("entry removed!");
     },
 
 
