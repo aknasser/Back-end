@@ -29,6 +29,7 @@ module.exports = {
             numero : lead.numero,
             email : lead.email
         })
+        res.send("new entry created!");
     },
 
 
@@ -51,12 +52,14 @@ module.exports = {
         {new : true}
         )
         console.log(`la nouvelle entrée : ${entryToUpdate}`)
+        res.send("entry updated!");
     },
 
     deletedObject : async(req, res) => {
         const targetId = req.params.id;
         console.log(`ID de l'élément à supprimer : ${targetId}`);
         const entryToDelete = await Prospect.findByIdAndRemove(targetId);
+        res.send("entry removed!");
     },
 
 
