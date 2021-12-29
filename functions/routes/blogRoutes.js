@@ -1,6 +1,5 @@
-const router = require("express").Router();  // On dit à express : "voilà, c'est ici qu'on gère les routes"
+const router = require("express").Router();
 const blogController = require("../controllers/blogController");
-
 
 
 // FILTERED SEARCH
@@ -18,6 +17,11 @@ router.post("/update/:id", blogController.updatedArticle);
 
 // D du CRUD
 router.delete("/delete/:id", blogController.deletedObject);
+
+
+
+
+
 
 
 

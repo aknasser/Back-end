@@ -1,5 +1,7 @@
-const router = require("express").Router();  // On dit à express : "voilà, c'est ici qu'on gère les routes"
+const router = require("express").Router();
 const inspirationController = require("../controllers/inspirationController");
+
+
 
 // R DU CRUD
 router.get("/random",  inspirationController.retrieveInspiration, inspirationController.randomInspiration, inspirationController.convertJSON);  
@@ -15,9 +17,5 @@ router.post("/update/:id", inspirationController.updatedInspiration);
 
 // D DU CRUD
 router.delete("/delete/:id", inspirationController.deletedObject);
-
-
-
-
 
 module.exports = router;
