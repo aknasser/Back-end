@@ -6,7 +6,6 @@ module.exports = {
     retrieveBlog : async (req, res, next) => {
         const allBlog = await Blog.find().sort({createdAt : -1});
         res.locals.toConvert = allBlog;   // On cale allBlog dans la variable locale "toConvertJSON". Cette variable est ensuite utilisée dans la middleware
-        console.log(allBlog[0]);
         next(); 
      }, 
 
