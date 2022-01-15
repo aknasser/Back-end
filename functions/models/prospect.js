@@ -20,14 +20,6 @@ const prospectSchema = new Schema(
             type: String,
             required: true
         },
-        activite: {
-            type: String,
-            required: true
-        },
-        numero: {
-            type: String,
-            required: true
-        },
         email: {
             type: String,
             unique: true,

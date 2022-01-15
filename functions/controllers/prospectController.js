@@ -25,8 +25,6 @@ module.exports = {
             prenom : lead.prenom,
             nom : lead.nom,
             demande : lead.demande,
-            activite : lead.activite,
-            numero : lead.numero,
             email : lead.email
         })
         res.send("new entry created!");
@@ -44,8 +42,6 @@ module.exports = {
                 prenom : prospectUpdated.prenom,
                 nom : prospectUpdated.nom,
                 demande : prospectUpdated.demande,
-                activite : prospectUpdated.activite,
-                numero : prospectUpdated.numero,
                 email : prospectUpdated.email,
             },
         },
