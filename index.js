@@ -66,20 +66,6 @@ app.use(passport.initialize());
 
 
 
-/* app.use(expressSession({                      // nous disons à expressSession d'utiliser des sessions et de recourir à cookie-parser comme methode de storage
-    secret: passwordCookie,
-    cookie: {
-        maxAge: 1000 * 60 * 60 * 24                         // durée avant expiration des cookies : 1 journée
-    },
-    resave: false,                              // Pour ne pas envoyer de cookie à l'user si la session ne bouge pas
-    saveUninitialized: false              // Pour éviter d'updater les datas de la session si rien n'a changé dans la session actuelle.
-})); */
-
-
-
-/* // INITIALISER PASSPORT.JS (Après le cookieParser)
-app.use(passport.session()); */
-
 
 
 app.use((req, res, next) => {                          // Nous utilisons cette middleware pour passer des variables locales aux vues. Ces variables seront utiles dans le layout.ejs (bouton login/log out)
