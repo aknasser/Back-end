@@ -2,12 +2,14 @@ const router = require("express").Router();
 const blogController = require("../controllers/blogController");
 
 
+
+
 // FILTERED SEARCH
 router.get("/search/:filter", blogController.filteredSearch, blogController.convertJSON);
-
+ 
 // R DU CRUD
 router.get("/",  blogController.retrieveBlog, blogController.convertJSON);  
-router.get("/:id", blogController.selectedArticle, blogController.convertJSON);
+router.get("/:id", blogController.selectedArticle, blogController.convertJSON); 
 
 // C DU CRUD
 router.post("/create", blogController.newArticle);

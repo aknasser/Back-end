@@ -4,7 +4,6 @@ const express = require("express");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy; 
 const mongoose = require("mongoose");
-const methodOverride = require("method-override");
 const passwordCookie = "motdepasse_hard" + Math.random();
 const router = require("./routes/indexRoutes");
 const bodyParser = require("body-parser");
@@ -18,7 +17,6 @@ require("dotenv").config()
 
 // LE SERVER
 const app = express();
-app.use(express.static("public")); 
 
 // PORT DE L'APPLICATION
 app.set("port", process.env.PORT || 1993);   // Si l'environnement ne définit pas de valeur spécifique alors PORT= 1993
@@ -64,15 +62,6 @@ app.use(cookieParser(process.env.COOKIE_SECRET))  // cookieParser utilise COOKIE
 
 app.use(passport.initialize());
 
-
-
-
-
-app.use((req, res, next) => {                          // Nous utilisons cette middleware pour passer des variables locales aux vues. Ces variables seront utiles dans le layout.ejs (bouton login/log out)
-    res.locals.loggedIn = req.isAuthenticated();       // isAuthentficated est une method propre à passport.js. Elle renvoie vrai ou faux. Elle nous indique si les datas d'un user sont actuellement présente dans les sessions cookies de la requête. En d'autres termes, si un user est connecté, isAuthentificated, renvoie "Vrai" 
-    res.locals.currentUser = req.user;              // Si un user existe bien, nous pouvons l'attribuer à une variable que nous voulons (ici currentUser)
-    next();
-});
 
 
 // POUR LIRE LES DATAS POSTEES PAR USER

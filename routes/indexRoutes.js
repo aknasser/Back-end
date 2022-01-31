@@ -1,7 +1,7 @@
 const router = require("express").Router();  // On dit à express : "voilà, c'est ici qu'on gère les routes"
 const cors = require("cors");
-require("dotenv").config()
-
+/* require("dotenv").config()
+ */
 
 
 const prospect = require("./prospectRoutes");
@@ -11,8 +11,8 @@ const inspiration = require("./inspirationRoutes");
 const user = require("./userRoutes");
 
 // CORS OPTIONS AND SETTINGS
-const whitelist = process.env.WHITELISTED_DOMAINS
-  ? process.env.WHITELISTED_DOMAINS.split(",")
+const whitelist = "http://localhost:3000"
+  ? "http://localhost:3000".split(",")
   : []
 
 const corsOptions = {
