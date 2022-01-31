@@ -5,18 +5,21 @@ const functions = require("firebase-functions");
 
 
 const express = require("express");
-const app = express();
-const router = require("./routes/indexRoutes");
-
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy; 
+const mongoose = require("mongoose");
 const passwordCookie = "motdepasse_hard" + Math.random();
+const router = require("./routes/indexRoutes");
+const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const expressSession = require("express-session");
-
-const passport = require("passport"); 
 const User = require("./models/user");  // Seulement utile pour accéder à la partie admin dans notre cas
 
-const mongoose = require("mongoose");
+require("dotenv").config()
+ 
 
+// LE SERVER
+const app = express();
 
 
 
@@ -33,31 +36,6 @@ app.use(expressSession({                      // nous disons à expressSession d
 }));
 
 
-// INITIALISER PASSPORT.JS (Après le cookieParser)
-app.use(passport.initialize());
-app.use(passport.session());
-
-// PREPARATION A LA SERIALISATION PASSPORT
-passport.use(User.createStrategy());
-passport.serializeUser(User.serializeUser());    // Pour sérialiser et deserialiser les objects
-passport.deserializeUser(User.deserializeUser());
-
-
-app.use((req, res, next) => {                          // Nous utilisons cette middleware pour passer des variables locales aux vues. Ces variables seront utiles dans le layout.ejs (bouton login/log out)
-    res.locals.loggedIn = req.isAuthenticated();       // isAuthentficated est une method propre à passport.js. Elle renvoie vrai ou faux. Elle nous indique si les datas d'un user sont actuellement présente dans les sessions cookies de la requête. En d'autres termes, si un user est connecté, isAuthentificated, renvoie "Vrai" 
-    res.locals.currentUser = req.user;              // Si un user existe bien, nous pouvons l'attribuer à une variable que nous voulons (ici currentUser)
-    next();
-});
-
-
-// POUR LIRE LES DATAS POSTEES PAR USER
-
-app.use(
-    express.urlencoded({
-        extended: false
-    })
-);
-app.use(express.json());
 
 
 
@@ -79,7 +57,32 @@ db.once("open", () => {                                                         
     console.log("All Right ! Connexion etablie avec la DB: new_website");
 });  
 
+//PASSPORT AND AUTHENTIFICATION STRATEGIES
 
+require("./strategies/JwtStrategy");
+require("./strategies/localStrategy");
+require("./authenticate");
+
+// PARSING AND COOKIE MANAGEMENT
+
+app.use(bodyParser.json())
+app.use(cookieParser(process.env.COOKIE_SECRET))  // cookieParser utilise COOKIE_SECRET pour crypter les datas des cookies envoyés. Idéalement, ce mot de passe est représenté par une variable. Ceci évite les failles de sécurité.
+
+
+// PASSPORT INITIALISATION
+
+app.use(passport.initialize());
+
+
+
+// POUR LIRE LES DATAS POSTEES PAR USER
+
+app.use(
+    express.urlencoded({
+        extended: false
+    })
+);
+app.use(express.json());
 
 
 
